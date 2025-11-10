@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Think Tech LK - Advanced Level Education Hub",
-  description: "Premier destination for A/L education resources in Sri Lanka",
+  title: "Think Tech - DB Guru",
+  description: "Premier destination for learning Database design and Development",
 };
 
 export default function RootLayout({
@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Quote Widget Script */}
         <script
           src="https://quote-widget-app.vercel.app/quote-widget.js"
           data-api="https://quote-widget-app.vercel.app/api/random-quote"
@@ -35,14 +36,19 @@ export default function RootLayout({
           data-icon="🦉"
           data-autohide="50000">
         </script>
+        {/* Theme Initialization Script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
+                // Get stored theme preference or default to 'system'
                 const theme = localStorage.getItem('think-tech-theme') || 'system'
                 const root = document.documentElement
+
+                // Remove existing theme classes
                 root.classList.remove('light', 'dark')
                 
+                // Apply theme class
                 if (theme === 'system') {
                   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
                   root.classList.add(systemTheme)
@@ -57,10 +63,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Wrap application in ThemeProvider */}
         <ThemeProvider
           defaultTheme="system"
           storageKey="think-tech-theme"
         >
+          {/* Quiz lock context to manage quiz access state */}
           <QuizLockProvider>
             <LayoutWrapper>{children}</LayoutWrapper>
           </QuizLockProvider>

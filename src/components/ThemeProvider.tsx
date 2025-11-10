@@ -1,3 +1,4 @@
+// Theme context provider for managing light/dark/system themes across the application
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -5,16 +6,17 @@ import { createContext, useContext, useEffect, useState } from 'react';
 type Theme = 'dark' | 'light' | 'system';
 
 type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
+  children: React.ReactNode;  
+  defaultTheme?: Theme;       // Default theme if none stored
+  storageKey?: string;        // localStorage key for persistence
 };
 
 type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  theme: Theme;              // Current theme preference
+  setTheme: (theme: Theme) => void; // Function to update theme
 };
 
+// Initial context state
 const initialState: ThemeProviderState = {
   theme: 'system',
   setTheme: () => null,
@@ -28,55 +30,47 @@ export function ThemeProvider({
   storageKey = 'think-tech-theme',
   ...props
 }: ThemeProviderProps) {
+  // Initialize theme from localStorage or use default
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return defaultTheme;
+    if (typeof window === 'undefined') return defaultTheme; // SSR fallback
+    
     try {
       return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
     } catch {
-      return defaultTheme;
+      return defaultTheme; // localStorage unavailable
     }
   });
 
+  // Apply theme changes to DOM
   useEffect(() => {
     const root = window.document.documentElement;
     
-    // Remove all theme classes first
+    // Remove existing theme classes
     root.classList.remove('light', 'dark');
 
+    // Resolve system theme to actual light/dark
     let actualTheme = theme;
-    
     if (theme === 'system') {
       actualTheme = window.matchMedia('(prefers-color-scheme: dark)').matches 
         ? 'dark' 
         : 'light';
     }
 
-    // Apply the theme class
+    // Apply theme class and color scheme
     root.classList.add(actualTheme);
-    
-    // Force a style recalculation
     root.style.colorScheme = actualTheme;
-    
-    console.log('Theme changed:', theme, '-> Applied:', actualTheme);
-    console.log('HTML classes:', root.className);
-    console.log('HTML style.colorScheme:', root.style.colorScheme);
-    
-    // Trigger a custom event for debugging
-    window.dispatchEvent(new CustomEvent('themeChanged', { 
-      detail: { theme, actualTheme } 
-    }));
   }, [theme]);
 
+  // Context value with theme state and setter
   const value = {
     theme,
     setTheme: (newTheme: Theme) => {
       try {
         localStorage.setItem(storageKey, newTheme);
       } catch (error) {
-        console.warn('Failed to save theme to localStorage:', error);
+        console.warn('Failed to save theme:', error);
       }
       setTheme(newTheme);
-      console.log('Theme changed to:', newTheme);
     },
   };
 
@@ -87,6 +81,7 @@ export function ThemeProvider({
   );
 }
 
+// Hook to access theme context
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 

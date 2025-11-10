@@ -1,3 +1,4 @@
+// Responsive sidebar navigation with mobile menu and desktop collapsible sidebar
 'use client';
 
 import { useState } from 'react';
@@ -11,24 +12,25 @@ interface SidebarItem {
   icon: string;
 }
 
+// Navigation items 
 const sidebarItems: SidebarItem[] = [
   {
-    name: "Home",
+    name: "Learning Platform",
     path: "/about",
-    icon: "ℹ️"
+    icon: "🏠"
   },
   {
-    name: "Database Design & Development",
+    name: "Database Lessons",
     path: "/database_design_and_development",
     icon: "🗄️",
   },
   {
-    name: "Questions",
+    name: "Practice Quiz",
     path: "/quiz-english",
     icon: "❓",
   },
   {
-    name: "Contact",
+    name: "Get Support",
     path: "/contact",
     icon: "📞"
   }
@@ -38,15 +40,14 @@ interface SidebarProps {
   className?: string;
 }
 
+
 export default function Sidebar({ className = '' }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+  const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
   const handleItemClick = (path: string) => {
     router.push(path);
@@ -54,7 +55,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
 
   return (
     <div className={`relative ${className}`}>
-      {/* Mobile header + hamburger (visible on small screens) - fixed to top */}
+      {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50">
         <header className="flex items-center justify-between px-3 py-2 border-b bg-white dark:bg-slate-900 dark:border-slate-800">
           <div className="flex items-center gap-3">
@@ -67,14 +68,15 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="text-sm font-semibold">Think Tech</span>
+            <span className="text-sm font-semibold">DB Guru</span>
           </div>
+          
           <div className="flex items-center gap-2">
             <ThemeToggle showLabel={false} />
           </div>
         </header>
 
-        {/* Mobile slide-over menu */}
+        {/* Mobile Slide-over Menu */}
         {mobileOpen && (
           <div className="fixed inset-0 z-50">
             <div
@@ -82,6 +84,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
               onClick={() => setMobileOpen(false)}
               aria-hidden
             />
+            
             <div className="absolute left-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-lg p-4 overflow-y-auto">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">Menu</h2>
@@ -96,7 +99,6 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 </button>
               </div>
 
-              {/* Mobile nav */}
               <nav className="space-y-2">
                 {sidebarItems.map((item) => {
                   const isActive = pathname === item.path;
@@ -108,8 +110,9 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                         handleItemClick(item.path);
                         setMobileOpen(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-slate-800 ${isActive ? 'bg-blue-100 text-blue-600' : ''
-                        }`}
+                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-slate-800 ${
+                        isActive ? 'bg-blue-100 text-blue-600' : ''
+                      }`}
                     >
                       <div className="text-lg">{item.icon}</div>
                       <span className="font-medium break-words leading-tight">{item.name}</span>
@@ -122,10 +125,9 @@ export default function Sidebar({ className = '' }: SidebarProps) {
         )}
       </div>
 
-      {/* Sidebar - hidden on small screens */}
+      {/* Desktop Sidebar */}
       <div
         className={`
-          sidebar
           hidden md:flex
           ${isCollapsed ? 'w-16' : 'w-16 md:w-64'} 
           border-r 
@@ -133,16 +135,15 @@ export default function Sidebar({ className = '' }: SidebarProps) {
         `}
         style={{ height: '100vh' }}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b sidebar-item flex-shrink-0 hidden md:flex">
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
           {!isCollapsed && (
-            <h2 className="text-xl font-bold sidebar-item hidden md:block">
-              Think Tech
-            </h2>
+            <h2 className="text-xl font-bold">DB Guru</h2>
           )}
+          
           <button
             onClick={toggleSidebar}
-            className="sidebar-item p-2 rounded-lg transition-colors hidden md:block"
+            className="p-2 rounded-lg transition-colors"
             aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {isCollapsed ? (
@@ -163,7 +164,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 key={item.name}
                 onClick={() => handleItemClick(item.path)}
                 className={`
-                  sidebar-item w-full flex items-center px-3 py-3 rounded-lg transition-all duration-200
+                  w-full flex items-center px-3 py-3 rounded-lg transition-all duration-200
                   ${isActive
                     ? 'bg-blue-100 text-blue-600 border-r-2 border-blue-500'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -174,14 +175,10 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 title={isCollapsed ? item.name : undefined}
               >
                 <div className="flex items-center">
-                  {/* Icon */}
-                  <div className={`
-                    flex items-center justify-center text-lg
-                    ${isCollapsed ? '' : 'md:mr-3'}
-                  `}>
+                  <div className={`flex items-center justify-center text-lg ${isCollapsed ? '' : 'md:mr-3'}`}>
                     {item.icon}
                   </div>
-                  {/* Name */}
+                  
                   {!isCollapsed && (
                     <span className="font-medium break-words hidden md:inline leading-tight">
                       {item.name}
@@ -200,10 +197,9 @@ export default function Sidebar({ className = '' }: SidebarProps) {
           })}
         </nav>
 
-        {/* Footer */}
-        <div className="sidebar-item p-4 border-t space-y-3 flex-shrink-0">
-          {/* Theme Toggle */}
-          <div className="hidden md:flex justify-center">
+        {/* Sidebar Footer */}
+        <div className="p-4 border-t space-y-3 flex-shrink-0">
+          <div className="flex justify-center">
             <ThemeToggle
               showLabel={!isCollapsed}
               className={isCollapsed ? 'px-2 py-2' : ''}
@@ -211,7 +207,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
           </div>
 
           {!isCollapsed && (
-            <div className="text-xs text-center hidden md:block" style={{ color: 'var(--sidebar-text)', opacity: 0.6 }}>
+            <div className="text-xs text-center" style={{ opacity: 0.6 }}>
               © All rights reserved.
             </div>
           )}

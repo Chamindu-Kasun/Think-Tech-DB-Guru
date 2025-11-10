@@ -8,6 +8,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 8s linear infinite',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
