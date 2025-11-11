@@ -1,0 +1,205 @@
+{
+  "units": [
+    {
+      "unit_number": 1,
+      "unit_title": "Introduction to Databases",
+      "topics": [
+        "What is a Database? - Definition and importance",
+        "File Systems vs Database Management Systems",
+        "Advantages and disadvantages of DBMS",
+        "Database system architecture - Three-level architecture",
+        "Data models overview - Hierarchical, Network, Relational, Object-oriented",
+        "Database languages - DDL, DML, DCL, TCL",
+        "Database users and administrators"
+      ]
+    },
+    {
+      "unit_number": 2,
+      "unit_title": "Relational Database Concepts",
+      "topics": [
+        "Relational model fundamentals - Tables, rows, columns",
+        "Keys in relational model - Primary, Foreign, Candidate, Super, Alternate",
+        "Integrity constraints - Entity, Referential, Domain, Key constraints",
+        "Relational algebra operations - Select, Project, Join, Union, Intersection",
+        "Relational calculus - Tuple and Domain calculus",
+        "Views and their implementation"
+      ]
+    },
+    {
+      "unit_number": 3,
+      "unit_title": "Entity-Relationship Modeling",
+      "topics": [
+        "ER Model components - Entities, Attributes, Relationships",
+        "Types of attributes - Simple, Composite, Single-valued, Multi-valued, Derived",
+        "Relationship types - Unary, Binary, Ternary, N-ary",
+        "Cardinality constraints - One-to-One, One-to-Many, Many-to-Many",
+        "Participation constraints - Total vs Partial participation",
+        "Weak entities and identifying relationships",
+        "Enhanced ER modeling - Specialization, Generalization, Aggregation",
+        "ER diagram notation and best practices"
+      ]
+    },
+    {
+      "unit_number": 4,
+      "unit_title": "Database Design and Normalization",
+      "topics": [
+        "Database design process - Conceptual, Logical, Physical design",
+        "Functional dependencies and axioms",
+        "Normal forms - 1NF, 2NF, 3NF, BCNF",
+        "Multi-valued dependencies and 4NF",
+        "Join dependencies and 5NF",
+        "Denormalization strategies and when to use them",
+        "Design pitfalls and common mistakes to avoid"
+      ]
+    },
+    {
+      "unit_number": 5,
+      "unit_title": "Structured Query Language (SQL)",
+      "topics": [
+        "SQL fundamentals and standards",
+        "Data Definition Language (DDL) - CREATE, ALTER, DROP, TRUNCATE",
+        "Data Manipulation Language (DML) - SELECT, INSERT, UPDATE, DELETE",
+        "SQL operators and expressions",
+        "WHERE clause and conditional operators",
+        "Joins - INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN",
+        "Set operations - UNION, INTERSECT, EXCEPT",
+        "Aggregate functions and GROUP BY clause",
+        "Subqueries and correlated subqueries",
+        "Views, indexes, and sequences"
+      ]
+    },
+    {
+      "unit_number": 6,
+      "unit_title": "Advanced SQL and Programming",
+      "topics": [
+        "Stored procedures and functions",
+        "Triggers and their applications",
+        "Cursors and transaction control",
+        "User-defined functions and packages",
+        "Dynamic SQL and prepared statements",
+        "Error handling and exception management",
+        "Performance tuning and query optimization"
+      ]
+    },
+    {
+      "unit_number": 7,
+      "unit_title": "Transaction Management",
+      "topics": [
+        "Transaction concepts and properties - ACID properties",
+        "Transaction states and operations",
+        "Concurrency control problems - Lost updates, Dirty read, Unrepeatable read",
+        "Lock-based protocols - Two-phase locking, Strict two-phase locking",
+        "Timestamp-based protocols",
+        "Deadlock handling - Prevention, Detection, Recovery",
+        "Recovery techniques - Log-based recovery, Checkpoints"
+      ]
+    },
+    {
+      "unit_number": 8,
+      "unit_title": "Database Security and Administration",
+      "topics": [
+        "Database security threats and countermeasures",
+        "Authentication and authorization mechanisms",
+        "Access control - Discretionary and Mandatory access control",
+        "Roles and privileges management",
+        "Database auditing and monitoring",
+        "Backup and recovery strategies",
+        "Database maintenance and performance monitoring",
+        "User management and security policies"
+      ]
+    },
+    {
+      "unit_number": 9,
+      "unit_title": "NoSQL Databases",
+      "topics": [
+        "Introduction to NoSQL databases",
+        "CAP theorem and BASE properties",
+        "Document databases - MongoDB, CouchDB",
+        "Key-value stores - Redis, DynamoDB",
+        "Column-family stores - Cassandra, HBase",
+        "Graph databases - Neo4j, Amazon Neptune",
+        "NoSQL data modeling patterns",
+        "When to use SQL vs NoSQL"
+      ]
+    },
+    {
+      "unit_number": 10,
+      "unit_title": "Database Programming and Connectivity",
+      "topics": [
+        "Database connectivity APIs - ODBC, JDBC, ADO.NET",
+        "Programming language integration - Python, Java, C#, Node.js",
+        "Object-Relational Mapping (ORM) concepts",
+        "Popular ORM frameworks - Hibernate, Entity Framework, SQLAlchemy",
+        "Connection pooling and resource management",
+        "Web application database integration",
+        "RESTful APIs for database access"
+      ]
+    },
+    {
+      "unit_number": 11,
+      "unit_title": "Data Warehousing and Business Intelligence",
+      "topics": [
+        "Data warehouse concepts and architecture",
+        "ETL processes - Extract, Transform, Load",
+        "Dimensional modeling - Star schema, Snowflake schema",
+        "OLAP vs OLTP systems",
+        "Data mining concepts and techniques",
+        "Business intelligence tools and reporting",
+        "Data visualization and dashboard design"
+      ]
+    },
+    {
+      "unit_number": 12,
+      "unit_title": "Big Data and Distributed Databases",
+      "topics": [
+        "Big data characteristics - Volume, Velocity, Variety, Veracity",
+        "Distributed database architectures",
+        "Sharding and replication strategies",
+        "Hadoop ecosystem overview",
+        "Apache Spark for data processing",
+        "Cloud database services - AWS RDS, Azure SQL, Google Cloud SQL",
+        "Database-as-a-Service (DBaaS) concepts"
+      ]
+    },
+    {
+      "unit_number": 13,
+      "unit_title": "Database Performance Tuning",
+      "topics": [
+        "Query optimization techniques",
+        "Indexing strategies - B-tree, Hash, Bitmap indexes",
+        "Execution plan analysis",
+        "Database statistics and their importance",
+        "Partitioning strategies - Range, List, Hash partitioning",
+        "Memory management and buffer pools",
+        "Monitoring tools and performance metrics"
+      ]
+    },
+    {
+      "unit_number": 14,
+      "unit_title": "Emerging Trends in Database Technology",
+      "topics": [
+        "In-memory databases",
+        "NewSQL databases",
+        "Blockchain and distributed ledger databases",
+        "Time-series databases",
+        "Spatial and geographic databases",
+        "Machine learning integration with databases",
+        "Serverless database architectures"
+      ]
+    },
+    {
+      "unit_number": 15,
+      "unit_title": "Database Project Development",
+      "topics": [
+        "Requirements analysis and specification",
+        "Database design documentation",
+        "Implementation and testing strategies",
+        "Database deployment and migration",
+        "Performance benchmarking",
+        "Security implementation and testing",
+        "Documentation and user training",
+        "Maintenance and support planning"
+      ]
+    }
+  ]
+}
